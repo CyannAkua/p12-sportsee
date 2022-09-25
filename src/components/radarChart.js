@@ -1,4 +1,4 @@
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis} from 'recharts';
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis,ResponsiveContainer} from 'recharts';
 import radarData from '../data/radarData.json';
 
 
@@ -36,10 +36,12 @@ const data =[
 
 export default function RadarC() {
     return (
-    <RadarChart className='radarChart' outerRadius={80} width={260} height={260} data={data} fill='white'>
+        <ResponsiveContainer className='radarChartContainer'>
+    <RadarChart className='radarChart' outerRadius="60%" data={data} fill='white'>
         <PolarGrid radialLines={false} />
         <PolarAngleAxis dataKey="kind" />
         <Radar dataKey="value" stroke="#FF0101" fill="#FF0101" fillOpacity={0.7} />
     </RadarChart>
+    </ResponsiveContainer>
     );
   }

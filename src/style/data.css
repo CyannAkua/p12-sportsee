@@ -1,21 +1,22 @@
 .data{
     display: grid;
     position: absolute;
-    top: 120px;
-    left: 120px;
-    margin: 0 90px 0 100px;
-    grid-template-rows: auto auto auto;
-    grid-template-columns: auto auto auto auto;
-    gap:30px;
+    top: 10vh;
+    left: 15vw;
+    height: calc(100% - 15vh);
+    width: calc(100% - 19vw);
+    grid-template-rows: auto 2fr 1.5fr;
+    grid-template-columns: repeat(4,1fr);
+    gap:3vh;
 }
 
 .userData{
-    margin-bottom: 30px;
     grid-area: 1/1/2/5;
 }
 .userData h1{
     font-weight: 500;
-    font-size: 48px;
+    font-size:4.7vh;
+    margin: 20px 0 0;
 }
 .userData h1 b{
     color:#FF0101 ;
@@ -23,13 +24,14 @@
 }
 
 .userData p{
-    margin-top: -10px;
-    font-size:18px ;
+    margin-top: 10px;
+    font-size:1.8vh ;
+}
+.barChartContainer{
+    grid-area: 2/1/3/4;
 }
 .barChart{
-    grid-area: 2/1/3/4;
     background-color: #FBFBFB;
-    padding: 20px;
     border-radius: 10px;
 }
 .barChart .custom-tooltip{
@@ -38,11 +40,15 @@
     text-align: center;
     padding:0 5px;
     line-height: 24px;
-    font-size: 7px;
+    font-size: 0.8vh;
     font-weight: 500;
 }
-
+.lineChartContainer{
+    height: 100%;
+    grid-area: 3/1/4/2;
+}
 .lineChart{
+    font-size: 1.6vh;
     background-color: #FF0000;
     background: linear-gradient(to right, #FF0000, #FF0000 70%, #E60000 70%);
     border-radius: 10px;
@@ -55,46 +61,69 @@
 .lineChart .recharts-curve{
 stroke: linear-gradient(270deg, #FFFFFF 1.19%, rgba(255, 255, 255, 0.403191) 81.27%) !important;
 }
+.radarChartContainer{
+    height: 100% ;
+    grid-area: 3/2/4/3;
+}
 .radarChart{
+    font-size: 1.3vh;
     background-color: #282D30;
     border-radius: 10px;
+}
+.circleChartContainer{
+    height: 100%;
+    grid-area: 3/3/4/4;
 }
 .circleChart{
     background-color: #FBFBFB;
     border-radius: 10px;
+}
+.circleChart .percentage{
+    font-size: 2.6vh;
+}
+.circleChart .objectif{
+    font-size: 1.7vh;
+}
+.circleChart .score{
+    font-size: 1.6vh;
 }
 .whitecircle{
     filter: drop-shadow( 0px 0px 10px rgba(0,0,0,0.05));
 }
 .countData{
     grid-area: 2/4/4/5;
+    height: 100% ;
+    display: inline-flex;
+    flex-flow: column;
+    justify-content: space-between
 }
 .countData .container{
+    border-radius: 10px;
     display: grid;
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
     background-color: #FBFBFB;
-    margin-bottom: 40px;
     align-items: center;
     align-content: center;
-    padding:30px;
+    padding:3vh;
     line-height: 0;
 }
 .countData .image {
     grid-area: 1/1/3/2;
-    padding-right: 24px;
+    padding-right: 1.6vw;
 }
 .countData img{
-    height: 100%;
+    aspect-ratio: 1;
+    height: 7vh;
 }
 .countData p{
     margin-block-start: 5px;
     margin-block-end: 5px;
-font-size: 20px;
+font-size: 2vh;
 font-weight: 700;  
 }
 .countData i{
-    font-size: 14px;
+    font-size: 1.4vh;
 font-weight: 500;
 font-style: normal;  
 }

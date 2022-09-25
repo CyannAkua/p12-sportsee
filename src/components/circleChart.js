@@ -1,4 +1,4 @@
-import { RadialBarChart, RadialBar,PolarGrid } from "recharts";
+import { RadialBarChart, RadialBar,ResponsiveContainer} from "recharts";
 import basicData from "../data/basicData.json";
 
 const data = [
@@ -16,19 +16,20 @@ const data = [
 
 export default function CircleC() {
   return (
+    <ResponsiveContainer className='circleChartContainer'>
     <RadialBarChart
-      className="circleChart" width={260} height={260} cx={130} cy={130} barGap={0}
-      innerRadius={70} outerRadius={70} barSize={10} data={data} startAngle={75} endAngle={435}>
-      <circle className='whitecircle' cx={130} cy={130} r={65} fill='white'></circle>
+      className="circleChart" cx="50%" cy="50%" barGap={0}
+      innerRadius="30%" outerRadius="100%" barSize={10} data={data} startAngle={75} endAngle={435}>
+      <circle className='whitecircle' cx="50%" cy="50%" r='30%' fill='white'></circle>
       <text
       fill='#282D30'
-        x={130} y={120} textAnchor="middle" dominantBaseline="middle" className="progress-label percentage">
+        x="50%" y="47%" textAnchor="middle" dominantBaseline="middle" className="progress-label percentage">
         {basicData[0].data.todayScore * 100}%
       </text>
       <text
       fill='#74798C'
-        x={130}
-        y={140}
+        x="50%"
+        y="53%"
         textAnchor="middle"
         dominantBaseline="middle"
         className="progress-label objectif"
@@ -42,5 +43,6 @@ export default function CircleC() {
       
       <RadialBar minAngle={0} cornerRadius={50 / 2} clockWise dataKey="value"/>
     </RadialBarChart>
+    </ResponsiveContainer>
   );
 }

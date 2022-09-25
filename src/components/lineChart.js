@@ -1,4 +1,4 @@
-import { Tooltip, LineChart, Line, XAxis, YAxis } from 'recharts';
+import { Tooltip, LineChart, Line, XAxis, YAxis,ResponsiveContainer } from 'recharts';
 import data from '../data/currentdata.json'
 
 
@@ -43,7 +43,9 @@ function CustomTick(){
 }
 
 export default function LineC(){
-return(<LineChart className='lineChart' width={260} height={260} data={data[0].data.sessions} >
+return(
+  <ResponsiveContainer className='lineChartContainer'>
+  <LineChart className='lineChart' data={data[0].data.sessions} >
   <XAxis dataKey="day" padding={{ left: 20, right: 20 }} axisLine={false} tickLine={false} tickFormatter={CustomTick} stroke='rgba(255,255,255,0.5)' />
   <YAxis type="number" domain={['dataMin - 30', 'dataMax + 90']} hide />
   <Tooltip content={<CustomTooltip/>}/>
@@ -55,4 +57,6 @@ return(<LineChart className='lineChart' width={260} height={260} data={data[0].d
   </defs>
   <text x={20} y={40} textAnchor="left" dominantBaseline="middle" fill='rgba(255,255,255,0.5)'>Durée moyenne des sessions</text>
   <Line type='natural' dataKey="sessionLength" stroke='url(#colorUv)' dot={{r:0}} activeDot={{ r: 4 }} />
-</LineChart>)}
+  </LineChart>
+</ResponsiveContainer>
+)}

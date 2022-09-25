@@ -1,8 +1,13 @@
 import data from '../data/activityData.json';
-import {BarChart, CartesianGrid, XAxis, YAxis, Tooltip,Legend, Bar} from 'recharts'
+import {BarChart, CartesianGrid, XAxis, YAxis, Tooltip,Legend, Bar, ResponsiveContainer} from 'recharts'
 let sessionData = data.data.sessions
 let lowestWeight = 9999
 let lowestCal = 9999
+// async function init(){
+//  let data = await parseData()
+//   sessionData = data.activity
+// console.log('data ', sessionData)
+// }
 function crunchingNumbers(){
     sessionData.forEach((_data)=> {
     if(lowestCal >= _data.calories){
@@ -22,7 +27,8 @@ function crunchingNumbers(){
 export default function BarC(){
   crunchingNumbers()
     return(
-        <BarChart className='barChart' width={835} height={320} data={sessionData} barSize={8} barGap={8} >
+<ResponsiveContainer className='barChartContainer' width="100%" height="100%">
+  <BarChart className='barChart' data={sessionData} barSize={8} barGap={8} >
   <CartesianGrid strokeDasharray="3 3"  />
   <XAxis dataKey="day" tickFormatter={CustomTick} tickLine={false} height={20} stroke='#9B9EAC'/>
   <YAxis dataKey='kilogram' domain={['dataMin-3', 'dataMax+3']} axisLine={false} tickLine={false} stroke='#9B9EAC'/>
@@ -32,7 +38,8 @@ export default function BarC(){
   <Legend align='right' verticalAlign='top' iconType='circle' iconSize={8} margin={{ top: 20, right: 20 }} stroke='#74798C'/>
   <Bar name="Poids (kg)" dataKey="kilogram" fill="#282D30" radius={[8,8,0,0]} />
   <Bar name="Calories brûlées (kCal)" dataKey="crunchedCalories" fill="#E60000" radius={[8,8,0,0]} />
-</BarChart>
+  </BarChart>
+</ResponsiveContainer>
     )
 }
 
