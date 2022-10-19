@@ -1,6 +1,4 @@
 import { Tooltip, LineChart, Line, XAxis, YAxis,ResponsiveContainer } from 'recharts';
-import data from '../data/currentdata.json'
-
 
 function CustomTooltip({ active, payload}){
     if (active && payload && payload.length) {
@@ -14,7 +12,6 @@ function CustomTooltip({ active, payload}){
   return null;
 }
 let i = 0
-
 function CustomTick(){
   if (i === 0){ i++
     return('L')
@@ -42,10 +39,10 @@ function CustomTick(){
     i++ 
 }
 
-export default function LineC(){
+export default function LineC(props){
 return(
   <ResponsiveContainer className='lineChartContainer'>
-  <LineChart className='lineChart' data={data[0].data.sessions} >
+  <LineChart className='lineChart' data={props.sessionsData.sessions} >
   <XAxis dataKey="day" padding={{ left: 20, right: 20 }} axisLine={false} tickLine={false} tickFormatter={CustomTick} stroke='rgba(255,255,255,0.5)' />
   <YAxis type="number" domain={['dataMin - 30', 'dataMax + 90']} hide />
   <Tooltip content={<CustomTooltip/>}/>

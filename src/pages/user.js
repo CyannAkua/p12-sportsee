@@ -8,14 +8,14 @@ import Header from "../components/header";
 import {SideBar} from "../components/header"
 import '../style/data.css'
 import useFetch from "../components/dataParser";
-
+let userId = 12;
 export default function User(){
-    const userData = useFetch(`//localhost:3000/user/18`);
-    const activityData = useFetch(`//localhost:3000/user/18/activity`);
-    const sessionsData = useFetch(`//localhost:3000/user/18/average-sessions`)
-    const performanceData = useFetch(`//localhost:3000/user/18/performance`)
+    const userData = useFetch(`//localhost:3000/user/${userId}`);
+    const activityData = useFetch(`//localhost:3000/user/${userId}/activity`);
+    const sessionsData = useFetch(`//localhost:3000/user/${userId}/average-sessions`)
+    const performanceData = useFetch(`//localhost:3000/user/${userId}/performance`)
+    console.log(userData)
     if ((userData,activityData,sessionsData,performanceData) == null){
-        console.log(userData,activityData,sessionsData,performanceData, (userData,activityData,sessionsData,performanceData) == null);
         return(
             <div>
                 <Header/>
@@ -32,12 +32,12 @@ return(
     <Header/>
     <SideBar/>
     <div className='data'>
-        <UserData userData={userData} sessionData={sessionsData}/>
-        <BarC/>
-        <LineC/>
-        <RadarC/>
-        <CircleC/>
-        <CountData/>
+        <UserData userData={userData} sessionsData={sessionsData}/>
+        <BarC activityData={activityData}/>
+        <LineC sessionsData={sessionsData}/>
+        <RadarC performanceData={performanceData}/>
+        <CircleC userData={userData}/>
+        <CountData userData={userData}/>
     </div>
     </div>
     )

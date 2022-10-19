@@ -1,20 +1,18 @@
 import { RadialBarChart, RadialBar,ResponsiveContainer} from "recharts";
-import basicData from "../data/basicData.json";
 
-const data = [
-  {
-    name: "max",
-    value: 1,
-    fill: "none",
-  },
-  {
-    name: "user",
-    value: basicData[0].data.todayScore,
-    fill: "#FF0101",
-  },
-];
-
-export default function CircleC() {
+export default function CircleC(props) {
+  const data = [
+    {
+      name: "max",
+      value: 1,
+      fill: "none",
+    },
+    {
+      name: "user",
+      value: props.userData.score == undefined ?  props.userData.todayScore : props.userData.score,
+      fill: "#FF0101",
+    },
+  ];
   return (
     <ResponsiveContainer className='circleChartContainer'>
     <RadialBarChart
@@ -24,7 +22,7 @@ export default function CircleC() {
       <text
       fill='#282D30'
         x="50%" y="47%" textAnchor="middle" dominantBaseline="middle" className="progress-label percentage">
-        {basicData[0].data.todayScore * 100}%
+        {props.userData.score == undefined ?  props.userData.todayScore * 100 : props.userData.score * 100}%
       </text>
       <text
       fill='#74798C'

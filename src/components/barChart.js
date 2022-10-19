@@ -1,15 +1,15 @@
 import data from '../data/activityData.json';
 import {BarChart, CartesianGrid, XAxis, YAxis, Tooltip,Legend, Bar, ResponsiveContainer} from 'recharts'
-let sessionData = data.data.sessions
+let activityData = []
 let lowestWeight = 9999
 let lowestCal = 9999
 // async function init(){
 //  let data = await parseData()
-//   sessionData = data.activity
-// console.log('data ', sessionData)
+//   activityData = data.activity
+// console.log('data ', activityData)
 // }
 function crunchingNumbers(){
-    sessionData.forEach((_data)=> {
+    activityData.forEach((_data)=> {
     if(lowestCal >= _data.calories){
       lowestCal = _data.calories
     }
@@ -17,18 +17,19 @@ function crunchingNumbers(){
       lowestWeight = _data.kilogram
     }
   })
-  sessionData.forEach((_data)=> {
+  activityData.forEach((_data)=> {
     _data.crunchedCalories = (_data.calories - lowestCal) / 80 + (lowestWeight-2);
     return _data;
    })
 }
 
 
-export default function BarC(){
+export default function BarC(props){
+  activityData = props.activityData.sessions
   crunchingNumbers()
     return(
 <ResponsiveContainer className='barChartContainer' width="100%" height="100%">
-  <BarChart className='barChart' data={sessionData} barSize={8} barGap={8} >
+  <BarChart className='barChart' data={activityData} barSize={8} barGap={8} >
   <CartesianGrid strokeDasharray="3 3"  />
   <XAxis dataKey="day" tickFormatter={CustomTick} tickLine={false} height={20} stroke='#9B9EAC'/>
   <YAxis dataKey='kilogram' domain={['dataMin-3', 'dataMax+3']} axisLine={false} tickLine={false} stroke='#9B9EAC'/>

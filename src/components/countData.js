@@ -5,9 +5,6 @@ import carbsicon from '../icons/carbs-icon.svg'
 import caloriesicon from '../icons/calories-icon.svg'
 import proteinicon from '../icons/protein-icon.svg'
 
-
-let keyData = data[0].data.keyData
-
 function SoloCount(props){
     return(
         <div>
@@ -20,7 +17,8 @@ function SoloCount(props){
     )
 }
 
-export default function CountData(){
+export default function CountData(props){
+    let keyData = props.userData.keyData 
     return(
     <div className='countData'>
         <SoloCount class='calories' keyData={keyData.calorieCount} name='Calories' value='kCal' icon={caloriesicon}/>
