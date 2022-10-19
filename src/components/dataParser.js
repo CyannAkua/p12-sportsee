@@ -1,24 +1,77 @@
-const axios = require('axios');
+import React,{useState,useEffect} from 'react';
+import axios from 'axios';
 
 let userId = 18
 
-export default async function parseData(){
-    let resp = await axios.get(`//localhost:3000/user/${userId}`)
-    console.log('resp', resp.data)
-    let respAct = await axios.get(`//localhost:3000/user/${userId}/activity`)
-    let respAvS = await axios.get(`//localhost:3000/user/${userId}/average-sessions`)
-    let respPer = await axios.get(`//localhost:3000/user/${userId}/performance`)
-    let data = resp.data.data
-    let parsedData = new dataParse(data.userInfos.firstName , data.todayScore ,data.keyData, respAct.data.data.sessions,respAvS.data.data.sessions,respPer.data.data.data)
-    return(parsedData)
+
+export default function useFetch(url){
+    const [data,setData] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error,setError] = useState(null)
+    useEffect(()=> {
+        setLoading(true)
+        axios.get(url)
+        .then(function(response){
+            setData(response.data.data)}
+            )
+        .catch((err)=>{setError(err)})
+        .finally(setLoading(false));
+    },[url]);
+    return data
 }
-class dataParse {
-   constructor(firstName,score,keyData,activity,sessions,performance){
-       this.firstName = firstName
-       this.score = score
-       this.keyData = keyData
-       this.activity = activity
-       this.sessions = sessions
-       this.performance = performance
-   }
-}
+
+// export default class FetchData extends React.Component{
+//     state = {
+//         loaded:0 ,
+//     }
+//     async componentDidMount(){
+//         const data = []
+//         async function fetchData(url){
+//         axios.get(url).then(res => {res.json()}).then(
+//             json =>{
+//                 data.push(json.data);
+//                 this.loaded ++
+//             }
+//         )}
+//         await fetchData(`//localhost:3000/user/${userId}`)
+//         await fetchData(`//localhost:3000/user/${userId}/activity`)
+//         console.log(data)
+//         console.log(this.loaded)
+//     }
+//     render(){
+//         return(
+//             <div>
+//                 {this.loaded < 4 ? <div>loading</div> : <div>loaded yaaay</div> }
+//             </div>
+//         )
+// }}
+
+// export default function parseData(){
+//     let data = []
+//     const [loaded, setLoaded] = useState(false)
+//     data.push(useFetch(`//localhost:3000/user/${userId}`))
+//     data.push(useFetch(`//localhost:3000/user/${userId}/activity`))
+//     data.push(useFetch(`//localhost:3000/user/${userId}/average-sessions`))
+//     data.push(useFetch(`//localhost:3000/user/${userId}/performance`))
+//     console.log(data)
+// }
+// parseData()
+// export function useFetch(url){
+//     const [data, setData] = useState({})
+//     useEffect(()=> {
+//         async function fetch(){
+//         await axios.get(url)
+//         .then(
+//         function (response){
+//             setData(response.data.data)
+//         }
+//             ).catch(
+//                 function(error){
+//                     console.log(error)
+//                 }
+//             )
+//         }
+//         fetch()
+//     },[])
+//     return data
+// }
