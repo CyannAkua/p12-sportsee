@@ -1,5 +1,8 @@
 import { Tooltip, LineChart, Line, XAxis, YAxis,ResponsiveContainer } from 'recharts';
 
+/**
+ * @description those are used for the custom tooltip when hovering over the line chart, and for the day ticks
+ */
 function CustomTooltip({ active, payload}){
     if (active && payload && payload.length) {
       return (
@@ -36,14 +39,16 @@ function CustomTick(){
       'x'
     )
   }
-    i++ 
 }
 
-export default function LineC(props){
-return(
+/**
+ * @description this is the line chart component
+ */
+export default function LineC(props){ 
+  return(
   <ResponsiveContainer className='lineChartContainer'>
-  <LineChart className='lineChart' data={props.sessionsData.sessions} >
-  <XAxis dataKey="day" padding={{ left: 20, right: 20 }} axisLine={false} tickLine={false} tickFormatter={CustomTick} stroke='rgba(255,255,255,0.5)' />
+  <LineChart className='lineChart' data={props.sessionsData.sessions}>
+  <XAxis dataKey="day" padding={{ left: 16, right: 16 }} axisLine={false} tickLine={false} tickFormatter={CustomTick} stroke='rgba(255,255,255,0.5)' />
   <YAxis type="number" domain={['dataMin - 30', 'dataMax + 90']} hide />
   <Tooltip content={<CustomTooltip/>}/>
   <defs>
@@ -53,7 +58,7 @@ return(
       </linearGradient>
   </defs>
   <text x={20} y={40} textAnchor="left" dominantBaseline="middle" fill='rgba(255,255,255,0.5)'>Durée moyenne des sessions</text>
-  <Line type='natural' dataKey="sessionLength" stroke='url(#colorUv)' dot={{r:0}} activeDot={{ r: 4 }} />
+  <Line type='natural' dataKey="sessionLength" stroke='url(#colorUv)' dot={{r:0}} activeDot={{ r: 4 }}/>
   </LineChart>
 </ResponsiveContainer>
 )}

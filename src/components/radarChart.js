@@ -1,12 +1,13 @@
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis,ResponsiveContainer} from 'recharts';
 
-/**
- * @description this is the radar chart
- * @returns 
- */
 
+    /**
+ * @description this is the radar chart component
+ */
 export default function RadarC(props) {
-    
+    /**
+ * @description this formats the data
+ */
 const data =[
     {
         kind:'Intensité',

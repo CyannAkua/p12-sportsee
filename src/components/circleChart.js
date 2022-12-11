@@ -1,6 +1,15 @@
 import { RadialBarChart, RadialBar,ResponsiveContainer} from "recharts";
 
+  /**
+ * @description this is the circle chart component
+ */
 export default function CircleC(props) {
+
+
+
+  /**
+ * @description this constant takes cares of the formating the data correctly
+ */
   const data = [
     {
       name: "max",
@@ -17,8 +26,8 @@ export default function CircleC(props) {
     <ResponsiveContainer className='circleChartContainer'>
     <RadialBarChart
       className="circleChart" cx="50%" cy="50%" barGap={0}
-      innerRadius="30%" outerRadius="100%" barSize={10} data={data} startAngle={75} endAngle={435}>
-      <circle className='whitecircle' cx="50%" cy="50%" r='30%' fill='white'></circle>
+      innerRadius="20%" outerRadius="100%" barSize={10} data={data} startAngle={75} endAngle={435}>
+      <circle className='whitecircle' cx="50%" cy="50%" r='25%' fill='white'></circle>
       <text
       fill='#282D30'
         x="50%" y="47%" textAnchor="middle" dominantBaseline="middle" className="progress-label percentage">

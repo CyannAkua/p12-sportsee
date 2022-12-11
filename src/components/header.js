@@ -5,6 +5,9 @@ import icon3 from '../icons/icon-3.svg'
 import logo from '../icons/logo (1).svg'
 import '../style/header.css'
 
+/**
+ * @description those function are the components header and side bar
+ */
 export default function Header(){
     return(     
             <div className='header'>

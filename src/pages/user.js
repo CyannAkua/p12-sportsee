@@ -10,11 +10,18 @@ import '../style/data.css'
 import useFetch from "../components/dataParser";
 let userId = 12;
 export default function User(){
+      /**
+ * @description those are all the calls to the api
+ */
     const userData = useFetch(`//localhost:3000/user/${userId}`);
     const activityData = useFetch(`//localhost:3000/user/${userId}/activity`);
     const sessionsData = useFetch(`//localhost:3000/user/${userId}/average-sessions`)
     const performanceData = useFetch(`//localhost:3000/user/${userId}/performance`)
     console.log(userData)
+
+  /**
+ * @description this avoids problem while the api are getting fetched
+ */
     if ((userData,activityData,sessionsData,performanceData) == null){
         return(
             <div>
@@ -26,6 +33,10 @@ export default function User(){
             </div>
         )
     }
+
+  /**
+ * @description then it loads the page with this
+ */
 else{
 return(
     <div>

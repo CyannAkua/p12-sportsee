@@ -1,3 +1,6 @@
+    /**
+ * @description this function takes care of seeing if the latest data is better than the second to last to congratulate the user.
+ */
 export default function UserData(props){
     let userData = props.userData.userInfos.firstName
     let sessionData = props.sessionsData.sessions

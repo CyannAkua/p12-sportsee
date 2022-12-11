@@ -1,10 +1,11 @@
-import data from '../data/basicData.json'
-
 import faticon from '../icons/fat-icon.svg'
 import carbsicon from '../icons/carbs-icon.svg'
 import caloriesicon from '../icons/calories-icon.svg'
 import proteinicon from '../icons/protein-icon.svg'
 
+    /**
+ * @description this is the function that create the four display, using a react component
+ */
 function SoloCount(props){
     return(
         <div>
